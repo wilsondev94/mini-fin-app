@@ -1,0 +1,20 @@
+echo '🏗️👷 Styling, testing and building your project before committing'
+
+# Check staged files for formatting and linting errors.
+npx lint-staged --concurrent false || 
+(
+        echo '❌❌❌ Errors, were found in your staged file(s), make the changes requested above. ❌❌❌'
+        false;
+)
+
+# If the above is success, try running a build.
+echo '👷‍♂️🔨 Ok, trying to build... 👷‍♂️🔨'
+
+yarn build || 
+(
+        echo '❌👷‍♂️🔨❌ Failed to build, please run "yarn build" and fixed the errors in the terminal. ❌👷‍♂️🔨❌'
+        false;
+)
+
+# If it builds, commit changes.
+echo '✅✅✅✅ Committing this now. ✅✅✅✅'
