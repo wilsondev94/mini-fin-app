@@ -1,33 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "./ui/Button";
+import { PATHS } from "@/constants/routes";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   return (
     <header className=" shadow-sm">
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-semibold ">Logo</h1>
+        <div className="border border-gray-800 w-fit p-1 rounded-md">
+          <Link to="/" className="text-lg font-semibold ">
+            Logo
+          </Link>
+        </div>
 
         <nav className="hidden md:flex items-center space-x-8">
           <Link to="#" className="hover:text-blue-600">
             Dashboard
           </Link>
-          <a href="#" className="hover:text-blue-600">
+          <Link to="#" className="hover:text-blue-600">
             Transactions
-          </a>
-          <a href="#" className="hover:text-blue-600">
+          </Link>
+          <Link to="#" className="hover:text-blue-600">
             Cards
-          </a>
-          <a href="#" className="hover:text-blue-600">
+          </Link>
+          <Link to="#" className="hover:text-blue-600">
             Settings
-          </a>
+          </Link>
         </nav>
-
-        <button
-          className={
-            "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-          }
-        >
-          Login
-        </button>
+        <div className="space-x-4">
+          <Button onClick={() => void navigate(PATHS.LOGIN)}>Login</Button>
+          <Button variant="outline" onClick={() => void navigate(PATHS.SIGNUP)}>
+            Sign Up
+          </Button>
+        </div>
       </div>
     </header>
   );
