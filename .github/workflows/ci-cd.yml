@@ -12,9 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ==========================================
   # JOB 1: Code Quality Checks
-  # ==========================================
+
   code-quality:
     name: Code Quality
     runs-on: ubuntu-latest
@@ -31,25 +30,18 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      # ------------------------------------------
       # TypeScript full-repo check (Safety)
-      # ------------------------------------------
-      # Even with Husky pre-commit, this ensures PRs from forks or web editor commits are safe
       - name: TypeScript Check
         run: yarn tsc --noEmit
 
-      # ------------------------------------------
       # ESLint & Prettier (Essential)
-      # ------------------------------------------
       - name: ESLint
         run: yarn lint
 
       - name: Prettier Check
         run: yarn format:check
 
-  # ==========================================
   # JOB 2: Unit Tests with Coverage
-  # ==========================================
   tests:
     name: Unit Tests
     runs-on: ubuntu-latest
@@ -66,7 +58,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      # Run Vitest full suite with coverage (recommended for production)
+      # Vitest full suite with coverage
       - name: Run Vitest Tests
         run: yarn test:ci
 
@@ -77,9 +69,7 @@ jobs:
           name: coverage-report
           path: coverage
 
-  # ==========================================
   # JOB 3: Build Application
-  # ==========================================
   build:
     name: Build App
     runs-on: ubuntu-latest
@@ -108,14 +98,12 @@ jobs:
           path: dist/
           retention-days: 7
 
-  # ==========================================
-  # JOB 4: Deploy (Modular Placeholder)
-  # ==========================================
+  # JOB 4: Deploy
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     needs: build
-    # Only deploy from main branch pushes
+    # Only deploy from master branch pushes
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     steps:
       # Download build artifact from previous job
@@ -125,7 +113,7 @@ jobs:
           name: dist-artifact
           path: dist
 
-      # Modular deploy placeholder for any platform
+      # Deployment placeholder for any platform
       - name: Deployment Placeholder
         run: |
           echo "🚀 Ready for Deployment!"
