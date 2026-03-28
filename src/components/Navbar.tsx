@@ -8,7 +8,7 @@ export default function Navbar() {
     <header className=" shadow-sm">
       <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <div className="border border-gray-800 w-fit p-1 rounded-md">
-          <Link to="/" className="text-lg font-semibold ">
+          <Link to="/" className="text-lg text-black font-semibold ">
             Logo
           </Link>
         </div>
@@ -29,7 +29,10 @@ export default function Navbar() {
         </nav>
         <div className="space-x-4">
           <Button onClick={() => void navigate(PATHS.LOGIN)}>Login</Button>
-          <Button variant="outline" onClick={() => void navigate(PATHS.SIGNUP)}>
+          <Button
+            variant="secondary"
+            onClick={() => void navigate(PATHS.SIGNUP)}
+          >
             Sign Up
           </Button>
         </div>
