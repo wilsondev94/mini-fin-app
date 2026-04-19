@@ -25,6 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "yarn"
 
       # Yarn install with frozen lockfile for CI consistency
       - name: Install Dependencies
@@ -54,6 +55,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "yarn"
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -82,6 +84,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "yarn"
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
